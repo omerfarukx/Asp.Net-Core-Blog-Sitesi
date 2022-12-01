@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CoreLayer": {
+      "commandName": "Project",
+      "nativeDebugging": true,
+      "jsWebView2Debugging": true
+    },
+    "Profile 1": {
+      "commandName": "Executable"
+    }
+  }
+}
