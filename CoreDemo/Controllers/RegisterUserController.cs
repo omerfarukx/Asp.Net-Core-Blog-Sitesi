@@ -28,13 +28,15 @@ namespace CoreDemo.Controllers
                 AppUser user = new AppUser()
                 {
                     Email = p.Mail,
-                    UserName= p.UserName,
-                    NameSurname= p.NameSurname,
+                    UserName = p.UserName,
+                    NameSurname = p.NameSurname,
+                    ImageUrl = " "
                 };
-                var result = await _userManager.CreateAsync(user,p.Password);
+                var result = await _userManager.CreateAsync(user, p.Password);
+
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index","Login");
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {

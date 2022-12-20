@@ -19,12 +19,18 @@ builder.Services.AddMvc(config =>
     config.Filters.Add(new AuthorizeFilter(policy));
 });
 builder.Services.AddDbContext<Context>();
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+builder.Services.AddIdentity<AppUser, AppRole>(x=>
+{
+    x.Password.RequireUppercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+})
+    .AddEntityFrameworkStores<Context>();
 builder.Services.AddMvc();
 builder.Services.AddAuthentication(
         CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(x =>
     {
+        x.ExpireTimeSpan= TimeSpan.FromMinutes(100);
         x.LoginPath = "/Login/Index";
     });
 
