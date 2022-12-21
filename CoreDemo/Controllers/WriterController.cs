@@ -17,8 +17,8 @@ namespace CoreDemo.Controllers
 		WriterManager wm = new WriterManager(new EfWriterRepository());
         UserManager userManager = new UserManager(new EfUserRepository());
         private readonly UserManager<AppUser> _userManager;
-
-		public WriterController(UserManager<AppUser> userManager)
+        Context c = new Context();
+        public WriterController(UserManager<AppUser> userManager)
 		{
 			_userManager = userManager;
 		}
@@ -28,7 +28,6 @@ namespace CoreDemo.Controllers
 		{
 			var usermail = User.Identity.Name;
 			ViewBag.v = usermail;
-			Context c = new Context();
 			var writerName = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
 			ViewBag.v2 = writerName;
 			return View();
@@ -43,11 +42,11 @@ namespace CoreDemo.Controllers
 		}
 		public IActionResult Test()
 		{
-			return View();
+            return View();
 		}
 		public PartialViewResult WriterNavbarPartial()
 		{
-			return PartialView();
+            return PartialView();
 		}
 		public PartialViewResult WriterFooterPartial()
 		{
