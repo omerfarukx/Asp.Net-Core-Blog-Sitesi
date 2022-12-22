@@ -31,6 +31,7 @@ builder.Services.AddAuthentication(
     .AddCookie(x =>
     {
         x.ExpireTimeSpan= TimeSpan.FromMinutes(100);
+        x.AccessDeniedPath = new PathString("/Login/AccesDenied");
         x.LoginPath = "/Login/Index";
     });
 
